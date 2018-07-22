@@ -1,0 +1,29 @@
+type Collection {
+  id: ID!
+  title: String!
+  entries: [Entry]
+  favorite: Boolean
+}
+
+input UpdatedCollection {
+  id: ID!
+  title: String
+  entries: [ID!]
+  favorite: Boolean
+}
+
+input NewCollection {
+  title: String
+  entries: [ID!]
+  favorite: Boolean
+}
+
+extend type Query {
+  Collection(id: ID!): Collection!
+  allCollections: [Collection]!
+}
+
+extend type Mutation {
+  newCollection(input: NewCollection!): Collection!
+  updateCollection(input: UpdatedCollection!): Collection!
+}

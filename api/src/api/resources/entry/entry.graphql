@@ -1,0 +1,35 @@
+type Entry {
+  id: ID!
+  title: String!
+  type: String!
+  contentUrl: String
+  priority: Int
+  favorite: Boolean
+}
+
+input UpdatedEntry {
+  id: ID!
+  title: String
+  type: String
+  contentUrl: String
+  priority: Int
+  favorite: Boolean
+}
+
+input NewEntry {
+  title: String
+  type: String
+  contentUrl: String
+  priority: Int
+  favorite: Boolean
+}
+
+extend type Query {
+  Entry(id: ID!): Entry!
+  allEntries: [Entry]!
+}
+
+extend type Mutation {
+  newEntry(input: NewEntry!): Entry!
+  updateEntry(input: UpdatedEntry!): Entry
+}
